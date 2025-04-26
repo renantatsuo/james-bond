@@ -82,11 +82,17 @@ func (ui *UI) handleSubmit(ctx context.Context, messagesWriter io.Writer) inputS
 			return
 		}
 
-		unquoted, err := strconv.Unquote(response)
-		if err != nil {
-			ui.ShowError(err)
+		if response == "" {
+			ui.ShowError(fmt.Errorf("something got wrong, response is empty"))
 			return
 		}
+
+		unquoted, err := strconv.Unquote(response)
+		if err != nil {
+			fmt.Fprintf(messagesWriter, "[::d]James Bond:[::-] %s\n", response)
+			return
+		}
+
 		fmt.Fprintf(messagesWriter, "[::d]James Bond:[::-] %s\n", unquoted)
 	}
 }

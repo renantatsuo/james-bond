@@ -1,0 +1,80 @@
+# See https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
+run:
+  tests: true
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gocyclo:
+    min-complexity: 45
+  dupl:
+    threshold: 100
+  misspell:
+    locale: US
+  unused:
+    check-exported: false
+  unparam:
+    check-exported: true
+  nestif:
+    min-complexity: 7
+
+linters:
+  enable-all: true
+  disable:
+    - fatcontext
+    - err113
+    - maintidx
+    - musttag
+    - containedctx
+    - funlen
+    - gocognit
+    - cyclop
+    - lll
+    - gochecknoglobals
+    - wrapcheck
+    - paralleltest
+    - forbidigo
+    - forcetypeassert
+    - varnamelen
+    - tagliatelle
+    - errname
+    - ireturn
+    - exhaustruct
+    - nonamedreturns
+    - testableexamples
+    - dupword
+    - depguard
+    - tagalign
+    - mnd
+    - testifylint
+    - recvcheck
+
+issues:
+  exclude:
+    - "strings.Title is deprecated"
+    - "strings.Title has been deprecated"
+    - "\"io/ioutil\" has been deprecated"
+    - "cyclomatic complexity \\d+ of func `\\(Schema\\).IsTrivial` is high"
+  exclude-use-default: false
+  exclude-rules:
+    - linters:
+        - mnd
+        - goconst
+        - noctx
+        - funlen
+        - dupl
+        - structcheck
+        - unused
+        - unparam
+        - nosnakecase
+      path: "_test.go"
+    - linters:
+        - errcheck # Error checking omitted for brevity.
+        - errchkjson
+        - gosec
+      path: "example_"
+    - linters:
+        - revive
+      text: "unused-parameter: parameter"
+

@@ -74,6 +74,12 @@ github.com/rivo/tview
 # github.com/rivo/uniseg v0.4.7
 ## explicit; go 1.18
 github.com/rivo/uniseg
+# github.com/swaggest/jsonschema-go v0.3.73
+## explicit; go 1.18
+github.com/swaggest/jsonschema-go
+# github.com/swaggest/refl v1.3.0
+## explicit; go 1.17
+github.com/swaggest/refl
 # github.com/tidwall/gjson v1.18.0
 ## explicit; go 1.12
 github.com/tidwall/gjson

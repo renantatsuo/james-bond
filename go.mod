@@ -5,7 +5,10 @@ go 1.24.2
 require (
 	github.com/openai/openai-go v0.1.0-beta.10
 	github.com/rivo/tview v0.0.0-20250330220935-949945f8d922
+	github.com/swaggest/jsonschema-go v0.3.73
 )
+
+require github.com/swaggest/refl v1.3.0 // indirect
 
 require (
 	github.com/gdamore/encoding v1.0.1 // indirect
