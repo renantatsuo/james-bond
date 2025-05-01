@@ -38,6 +38,7 @@ func New(client Client) *Agent {
 			tools.ReadFile,
 			tools.MyName,
 			tools.ListFiles,
+			tools.WriteFile,
 		},
 	}
 }

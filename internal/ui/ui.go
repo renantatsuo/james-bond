@@ -112,7 +112,7 @@ func (ui *UI) handleSubmit(ctx context.Context, messagesWriter io.Writer) inputS
 		}
 		response = tview.TranslateANSI(escapeANSI(response))
 
-		fmt.Fprintf(messagesWriter, "[::u]James Bond:[::-] %s\n", response)
+		fmt.Fprintf(messagesWriter, "[::d]James Bond:[::-] %s\n", response)
 	}
 }
 
