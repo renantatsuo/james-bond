@@ -28,7 +28,10 @@ func NewOpenAIClient(apiKey string) *OpenAIClient {
 }
 
 func (a *OpenAIClient) SendMessage(ctx context.Context, input []Message, model string) (string, error) {
-	messages := mapMessages(input)
+	messages := []openai.ChatCompletionMessageParamUnion{
+		openai.SystemMessage("You are an AI agent, you should assist users effectively. You run in a terminal on top of golang tview. You MUST use ANSI for formatting instead of Markdown."),
+	}
+	messages = append(messages, mapMessages(input)...)
 
 	params := openai.ChatCompletionNewParams{
 		Messages: messages,
@@ -95,7 +98,7 @@ func (a *OpenAIClient) handleTool(toolCall openai.ChatCompletionMessageToolCall)
 
 func getModel(model string) openai.ChatModel {
 	supportedModels := []openai.ChatModel{
-		"gpt-4.1-nano",
+		"gpt-4.1-mini",
 	}
 	if slices.Contains(supportedModels, model) {
 		return model

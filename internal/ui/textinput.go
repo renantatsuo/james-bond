@@ -22,6 +22,7 @@ func textInput(submitHandler inputSubmitHandler) *tview.TextArea {
 
 		return key
 	})
-	input.Box.SetBackgroundColor(ColorBackground)
+	input.SetBackgroundColor(ColorBackground).
+		SetBorder(true)
 	return input
 }

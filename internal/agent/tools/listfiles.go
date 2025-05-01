@@ -14,7 +14,7 @@ var ignore = map[string]struct{}{
 
 var ListFiles = Tool{
 	Name:        "listFiles",
-	Description: "Lists the files in the specified path. Defaults to current path.",
+	Description: "Lists the files in the specified path. Defaults to current path. Use it to find the path for a file when not specified.",
 	Args:        structToSchema[ListFilesSchema](),
 	Fn:          ListFilesFn,
 }
