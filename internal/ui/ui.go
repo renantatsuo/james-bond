@@ -74,7 +74,9 @@ func (ui *UI) handleSubmit(ctx context.Context, messagesWriter io.Writer) inputS
 	return func(message string) {
 		fmt.Fprintf(messagesWriter, "[::d]You:[::-] %s \n", message)
 
-		response, err := ui.agent.SendUserMessage(ctx, message, "gpt-4.1-nano")
+		msg := agent.Message{Content: message, Type: agent.MessageTypeUser}
+
+		response, err := ui.agent.SendUserMessage(ctx, msg, "gpt-4.1-nano")
 		if err != nil {
 			ui.ShowError(err)
 			return

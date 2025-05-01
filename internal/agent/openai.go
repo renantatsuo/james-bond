@@ -27,7 +27,7 @@ func NewOpenAIClient(apiKey string) *OpenAIClient {
 	}
 }
 
-func (a *OpenAIClient) SendMessage(ctx context.Context, input []string, model string) (string, error) {
+func (a *OpenAIClient) SendMessage(ctx context.Context, input []Message, model string) (string, error) {
 	messages := mapMessages(input)
 
 	params := openai.ChatCompletionNewParams{
@@ -105,10 +105,15 @@ func getModel(model string) openai.ChatModel {
 	}
 }
 
-func mapMessages(messages []string) []openai.ChatCompletionMessageParamUnion {
+func mapMessages(messages []Message) []openai.ChatCompletionMessageParamUnion {
 	var chatMessages []openai.ChatCompletionMessageParamUnion
 	for _, msg := range messages {
-		chatMessages = append(chatMessages, openai.UserMessage(msg))
+		if msg.Type == MessageTypeAI {
+			chatMessages = append(chatMessages, openai.AssistantMessage(msg.Content))
+		}
+		if msg.Type == MessageTypeUser {
+			chatMessages = append(chatMessages, openai.UserMessage(msg.Content))
+		}
 	}
 	return chatMessages
 }
