@@ -17,8 +17,6 @@ type UI struct {
 	agent    *agent.Agent
 }
 
-type SendMessage func(string)
-
 func New(agent *agent.Agent) *UI {
 	return &UI{
 		agent: agent,

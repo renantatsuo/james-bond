@@ -1,4 +1,4 @@
-package agent
+package tools
 
 import (
 	"encoding/json"
@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-var ToolReadFile = Tool{
+var ReadFile = Tool{
 	Name:        "readFile",
 	Description: "Reads the content of a specified file and returns it as a string.",
 	Args:        structToSchema[ReadFileSchema](),
-	Fn:          ReadFile,
+	Fn:          ReadFileFn,
 }
 
 type ReadFileSchema struct {
@@ -18,7 +18,7 @@ type ReadFileSchema struct {
 	_    struct{} `additionalProperties:"false"`
 }
 
-func ReadFile(input []byte) (string, error) {
+func ReadFileFn(input []byte) (string, error) {
 	var inputJson ReadFileSchema
 	err := json.Unmarshal(input, &inputJson)
 	if err != nil {

@@ -3,27 +3,29 @@ package agent
 import (
 	"context"
 	"fmt"
+
+	"github.com/renantatsuo/james-bond/internal/agent/tools"
 )
 
 type Client interface {
 	SendMessage(ctx context.Context, input []string, model string) (string, error)
-	SetTools(tools []Tool)
+	SetTools(tools []tools.Tool)
 }
 
 type Agent struct {
 	client  Client
 	history []string
-	tools   []Tool
+	tools   []tools.Tool
 }
 
 func New(client Client) *Agent {
 	return &Agent{
 		client:  client,
 		history: []string{},
-		tools: []Tool{
-			ToolReadFile,
-			ToolMyName,
-			ToolListFiles,
+		tools: []tools.Tool{
+			tools.ReadFile,
+			tools.MyName,
+			tools.ListFiles,
 		},
 	}
 }

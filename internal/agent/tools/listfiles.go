@@ -1,4 +1,4 @@
-package agent
+package tools
 
 import (
 	"encoding/json"
@@ -12,11 +12,11 @@ var ignore = map[string]struct{}{
 	"vendor": {},
 }
 
-var ToolListFiles = Tool{
+var ListFiles = Tool{
 	Name:        "listFiles",
 	Description: "Lists the files in the specified path. Defaults to current path.",
 	Args:        structToSchema[ListFilesSchema](),
-	Fn:          ListFiles,
+	Fn:          ListFilesFn,
 }
 
 type ListFilesSchema struct {
@@ -24,7 +24,7 @@ type ListFilesSchema struct {
 	_    struct{} `additionalProperties:"false"`
 }
 
-func ListFiles(input []byte) (string, error) {
+func ListFilesFn(input []byte) (string, error) {
 	var inputJson ListFilesSchema
 	err := json.Unmarshal(input, &inputJson)
 	if err != nil {

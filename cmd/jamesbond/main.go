@@ -8,8 +8,8 @@ import (
 	"syscall"
 
 	"github.com/renantatsuo/james-bond/internal/agent"
-	"github.com/renantatsuo/james-bond/internal/env"
 	"github.com/renantatsuo/james-bond/internal/ui"
+	"github.com/renantatsuo/james-bond/pkg/env"
 )
 
 var (

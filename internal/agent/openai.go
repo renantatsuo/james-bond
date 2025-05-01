@@ -8,13 +8,14 @@ import (
 
 	"github.com/openai/openai-go"
 	"github.com/openai/openai-go/option"
+	"github.com/renantatsuo/james-bond/internal/agent/tools"
 	"github.com/swaggest/jsonschema-go"
 )
 
 type OpenAIClient struct {
 	client  openai.Client
 	tools   []openai.ChatCompletionToolParam
-	toolMap map[string]ToolFn
+	toolMap map[string]tools.ToolFn
 }
 
 func NewOpenAIClient(apiKey string) *OpenAIClient {
@@ -22,7 +23,7 @@ func NewOpenAIClient(apiKey string) *OpenAIClient {
 	return &OpenAIClient{
 		client:  client,
 		tools:   []openai.ChatCompletionToolParam{},
-		toolMap: map[string]ToolFn{},
+		toolMap: map[string]tools.ToolFn{},
 	}
 }
 
@@ -66,7 +67,7 @@ func (a *OpenAIClient) SendMessage(ctx context.Context, input []string, model st
 	return completion.Choices[0].Message.Content, nil
 }
 
-func (a *OpenAIClient) SetTools(tools []Tool) {
+func (a *OpenAIClient) SetTools(tools []tools.Tool) {
 	if len(a.tools) > 0 {
 		return
 	}

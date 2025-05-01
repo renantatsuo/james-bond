@@ -1,12 +1,12 @@
-package agent
+package tools
 
-var ToolMyName = Tool{
+var MyName = Tool{
 	Name:        "getMyName",
 	Description: "Get the user's name.",
 	Args:        nil,
-	Fn:          MyName,
+	Fn:          MyNameFn,
 }
 
-func MyName(_input []byte) (string, error) {
+func MyNameFn(_input []byte) (string, error) {
 	return "Renan Tatsuo", nil
 }
