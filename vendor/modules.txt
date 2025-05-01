@@ -68,7 +68,7 @@ github.com/openai/openai-go/packages/ssestream
 github.com/openai/openai-go/responses
 github.com/openai/openai-go/shared
 github.com/openai/openai-go/shared/constant
-# github.com/rivo/tview v0.0.0-20250330220935-949945f8d922
+# github.com/rivo/tview v0.0.0-20250501113434-0c592cd31026
 ## explicit; go 1.18
 github.com/rivo/tview
 # github.com/rivo/uniseg v0.4.7
@@ -77,7 +77,7 @@ github.com/rivo/uniseg
 # github.com/swaggest/jsonschema-go v0.3.73
 ## explicit; go 1.18
 github.com/swaggest/jsonschema-go
-# github.com/swaggest/refl v1.3.0
+# github.com/swaggest/refl v1.3.1
 ## explicit; go 1.17
 github.com/swaggest/refl
 # github.com/tidwall/gjson v1.18.0
