@@ -30,7 +30,7 @@ func WriteFileFn(input []byte) (string, error) {
 
 	err = os.WriteFile(path, []byte(inputJson.Content), 0644)
 	if err != nil {
-		return "", fmt.Errorf("failed to write file: %v", err)
+		return "", fmt.Errorf("failed to write file: %w", err)
 	}
 
 	return "", nil

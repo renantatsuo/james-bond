@@ -41,7 +41,7 @@ func (a *OpenAIClient) SendMessage(ctx context.Context, input []Message, model s
 
 	completion, err := a.client.Chat.Completions.New(ctx, params)
 	if err != nil {
-		return "", fmt.Errorf("failed to send message: %v", err)
+		return "", fmt.Errorf("failed to send message: %w", err)
 	}
 
 	toolCalls := completion.Choices[0].Message.ToolCalls
@@ -54,7 +54,7 @@ func (a *OpenAIClient) SendMessage(ctx context.Context, input []Message, model s
 		for _, toolCall := range toolCalls {
 			toolRes, err := a.handleTool(toolCall)
 			if err != nil {
-				return "", fmt.Errorf("failed to handle tool call %q: %v", toolCall.Function.Name, err)
+				return "", fmt.Errorf("failed to handle tool call %q: %w", toolCall.Function.Name, err)
 			}
 
 			params.Messages = append(params.Messages, openai.ToolMessage(toolRes, toolCall.ID))
@@ -62,7 +62,7 @@ func (a *OpenAIClient) SendMessage(ctx context.Context, input []Message, model s
 
 		completion, err = a.client.Chat.Completions.New(ctx, params)
 		if err != nil {
-			return "", fmt.Errorf("failed to send tool message: %v", err)
+			return "", fmt.Errorf("failed to send tool message: %w", err)
 		}
 		toolCalls = completion.Choices[0].Message.ToolCalls
 	}

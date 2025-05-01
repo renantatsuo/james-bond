@@ -48,7 +48,7 @@ func (a *Agent) SendUserMessage(ctx context.Context, message Message, model stri
 	a.history = append(a.history, message)
 	response, err := a.client.SendMessage(ctx, a.history, model)
 	if err != nil {
-		return "", fmt.Errorf("failed to send message: %v", err)
+		return "", fmt.Errorf("failed to send message: %w", err)
 	}
 
 	a.history = append(a.history, Message{Type: MessageTypeAI, Content: response})
